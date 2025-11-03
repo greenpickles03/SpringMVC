@@ -64,8 +64,48 @@ src/main/java/com/springmvc/Spring/MVC
 ```bash
 git clone https://github.com/your-repository.git
 
-
-### **2. Navigate to project folder**
+cd SpringMVC
+2. Navigate to project folder
 cd SpringMVC
 
+3. Build the project
+mvn clean install
 
+4. Run the application
+mvn spring-boot:run
+
+🌐 Endpoints
+GET — Home/Test
+http://localhost:8080/employee
+
+
+(Modify based on your actual controller mappings)
+
+📁 Folder Explanation
+Folder	Description
+controller/	Handles HTTP requests
+service/	Contains business logic
+repository/	Data access layer
+entity/	Model/POJO classes
+resources/	Static files, templates, properties
+test/	Unit tests
+✅ Notes
+
+Project uses Spring Boot with Spring MVC only (no Spring Data JPA unless added).
+
+You may connect a database later (MySQL/PostgreSQL).
+
+📌 Future Enhancements (Optional)
+
+Add database persistence (JPA + MySQL)
+
+Add Thymeleaf templates
+
+Add validation using @Valid
+
+Add exception handling (@ControllerAdvice)
+
+👨‍💻 Author
+
+Andrew Neil Royo
+Spring MVC Developer
