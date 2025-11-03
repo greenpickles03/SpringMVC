@@ -30,7 +30,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) throws Exception {
         service.saveEmployee(employee);
         return "redirect:/";
     }

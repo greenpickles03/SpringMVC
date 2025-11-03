@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void saveEmployee(Employee employee) {
+    public void saveEmployee(Employee employee) throws Exception {
         List<Employee> employeeList = repository.findAll()
                 .stream()
                 .filter(x -> x.getEmail().equalsIgnoreCase(employee.getEmail()))
@@ -30,6 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         if(employeeList.isEmpty()){
             repository.save(employee);
+        }else{
+            throw new Exception("Employee with email " + employee.getEmail() + " already exists.");
         }
     }
 
