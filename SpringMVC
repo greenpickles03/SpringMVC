@@ -1,0 +1,88 @@
+//Spring MVC Overview
+ * Spring MVC (Model-View-Controller) is a framework within the Spring Framework that is used to build web applications.
+It follows the MVC design pattern, which separates the application into three main components:
+Model, View, and Controller. This separation helps in organizing the code, making it more maintainable and scalable.
+
+//Key Components of Spring MVC:
+1. DispatcherServlet:
+   - The front controller in Spring MVC that handles all incoming requests and routes them to the appropriate controllers.
+2. Controller:
+   - Java classes annotated with @Controller that handle user requests, process them, and return a view name or data.
+3. Model:
+   - Represents the data of the application. It is often implemented using JavaBeans or POJOs.
+4. View:
+   - The presentation layer that renders the model data to the user. Common view technologies include JSP, Thymeleaf, and FreeMarker.
+5. HandlerMapping:
+   - Maps incoming requests to the appropriate controller methods based on URL patterns.
+6. ViewResolver:
+   - Resolves view names returned by controllers to actual view implementations.
+7. ModelAndView:
+   - A holder for both the model and the view in a single return value from a controller method.
+
+//Basic Workflow of Spring MVC:
+1. A user sends a request to the web application.
+2. The DispatcherServlet intercepts the request and consults the HandlerMapping to find the appropriate controller.
+3. The controller processes the request, interacts with the model (if necessary), and returns a view name.
+4. The DispatcherServlet uses the ViewResolver to resolve the view name to an actual view.
+5. The view is rendered and returned to the user as a response.
+
+//DispatcherServlet:
+ * The DispatcherServlet is the central component of the Spring MVC framework. It acts as the front controller,
+ handling all incoming HTTP requests and delegating them to the appropriate components for processing.
+ It is configured in the web.xml file or through Java configuration.
+
+ //Example Configuration in web.xml:
+ <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+ </servlet-mapping>
+
+ //How does Spring MVC Works Internally or Explain Spring MVC Request Flow?
+1. Client Request: A user sends an HTTP request to the web application.
+2. DispatcherServlet: The request is intercepted by the DispatcherServlet, which acts as the front
+    controller.
+3. HandlerMapping: The DispatcherServlet consults the HandlerMapping to determine which controller should handle the
+    request based on the URL pattern.
+4. Controller: The identified controller processes the request, interacts with the model (if necessary), and returns a
+    view name or ModelAndView object.
+5. ViewResolver: The DispatcherServlet uses the ViewResolver to resolve the view name to an actual view implementation.
+6. View Rendering: The view is rendered with the model data and returned to the user as an HTTP response.
+7. Client Response: The user receives the rendered view as a response to their request.
+
+//What is the Difference Between @Controller and @RestController?
+    * @Controller and @RestController are both annotations used in Spring MVC to define controller classes,
+but they serve different purposes:
+1. @Controller:
+   - Used to define a standard web controller that returns views (HTML pages).
+   - Methods in a @Controller class typically return a view name, which is resolved by the ViewResolver to render the view.
+   - It is used for traditional web applications where the response is an HTML page.
+   - Example:
+    ```java
+    @Controller
+    public class MyController {
+        @GetMapping("/hello")
+        public String sayHello(Model model) {
+            model.addAttribute("message", "Hello, World!");
+            return "hello"; // Returns the view name "hello"
+        }
+    }
+    ```
+2. @RestController:
+   - A specialized version of @Controller that is used for RESTful web services.
+   - It combines @Controller and @ResponseBody, meaning that methods in a @RestController class return data
+   (usually in JSON or XML format) directly in the HTTP response body.
+   - It is used for building APIs where the response is typically data rather than a view.
+   - Example:
+    ```java
+    @RestController
+    public class MyRestController {
+        @GetMapping("/api/hello")
+        public String sayHello() {
+            return "Hello, World!"; // Returns data directly in the response body
+        }
+    }
