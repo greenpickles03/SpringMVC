@@ -31,6 +31,9 @@ public class EmployeeController {
 
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee employee) throws Exception {
+        if(employee.getEmail() == null || employee.getEmail().isEmpty()){
+            throw new Exception("Email cannot be empty");
+        }
         service.saveEmployee(employee);
         return "redirect:/";
     }

@@ -19,6 +19,11 @@ Model, View, and Controller. This separation helps in organizing the code, makin
 7. ModelAndView:
    - A holder for both the model and the view in a single return value from a controller method.
 
+//@ControllerAdvice:
+ * @ControllerAdvice is a specialization of the @Component annotation in Spring MVC that allows you to define
+global exception handling, model attributes, and data binding for multiple controllers. It is used to apply
+common functionality across all controllers in the application.
+
 //Basic Workflow of Spring MVC:
 1. A user sends a request to the web application.
 2. The DispatcherServlet intercepts the request and consults the HandlerMapping to find the appropriate controller.
